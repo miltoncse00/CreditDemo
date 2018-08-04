@@ -15,12 +15,9 @@ namespace CreditDemo.Data
             builder.Property(s => s.TimeStamp).IsRequired(); ;
             builder.Property(s => s.LocationName).HasMaxLength(500);
             builder.Property(s => s.OperatorName).HasMaxLength(500).IsRequired();
-            builder.Property(s => s.OperatorName).HasMaxLength(500).IsRequired();
             builder.Property(s => s.OpeningDebit);
             builder.Property(s => s.Currency).HasMaxLength(50);
-            builder.Property(s => s.Currency).HasMaxLength(50);
-            builder.Property(s => s.SaleInvoiceNumber).HasMaxLength(50);
-
+            builder.Property(s => s.SaleInvoiceNumber).HasMaxLength(50).IsRequired();
             builder.HasMany(s => s.Payments);
 
         }

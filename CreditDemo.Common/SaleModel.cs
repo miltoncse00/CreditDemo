@@ -1,30 +1,43 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CreditDemo.Common
 {
     public class SaleModel
     {
-        [JsonProperty(PropertyName ="id")]
+        [Required]
+        [MaxLength(12)]
+        [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
-        [JsonProperty(PropertyName ="customer_id")]
+        [Required]
+        [MaxLength(12)]
+        [JsonProperty(PropertyName = "customer_id")]
         public string CustomerId { get; set; }
-        [JsonProperty(PropertyName ="timestamp")]
+
+        [JsonProperty(PropertyName = "timestamp")]
         public DateTime TimeStamp { get; set; }
-        [JsonProperty(PropertyName ="location_name")]
+        [MaxLength(500)]
+        [JsonProperty(PropertyName = "location_name")]
         public string LocationName { get; set; }
-        [JsonProperty(PropertyName ="operator_name")]
+        [MaxLength(500)]
+        [JsonProperty(PropertyName = "operator_name")]
+        [Required]
         public string OperatorName { get; set; }
-        [JsonProperty(PropertyName ="opening_debt")]
+        [JsonProperty(PropertyName = "opening_debt")]
         public decimal OpeningDebit { get; set; }
-        [JsonProperty(PropertyName ="currency")]
+        [JsonProperty(PropertyName = "currency")]
+        [MaxLength(50)]
         public string Currency { get; set; }
-        [JsonProperty(PropertyName ="sale_invoice_number")]
+        [Required]
+        [MaxLength(50)]
+        [JsonProperty(PropertyName = "sale_invoice_number")]
         public string SaleInvoiceNumber { get; set; }
         [JsonProperty(PropertyName = "payments")]
-        public IList<PaymentModel> Payments { get; set; }
+        [Required]
+        public List<PaymentModel> Payments { get; set; }
 
 
     }

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditDemo.Business", "Cred
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditDemo.Data", "CreditDemo.Data\CreditDemo.Data.csproj", "{FBBDBD1E-E988-404D-9567-6DA6B6744E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditDemo.Tests", "CreditDemo.Tests\CreditDemo.Tests.csproj", "{5713174E-493F-4846-872E-E7FA2D22CCDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditDemo.XTest", "CreditDemo.XTest\CreditDemo.XTest.csproj", "{35E441D3-5029-47C4-994D-FE3FA2D34369}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{FBBDBD1E-E988-404D-9567-6DA6B6744E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBBDBD1E-E988-404D-9567-6DA6B6744E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBBDBD1E-E988-404D-9567-6DA6B6744E8B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5713174E-493F-4846-872E-E7FA2D22CCDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5713174E-493F-4846-872E-E7FA2D22CCDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5713174E-493F-4846-872E-E7FA2D22CCDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5713174E-493F-4846-872E-E7FA2D22CCDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35E441D3-5029-47C4-994D-FE3FA2D34369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35E441D3-5029-47C4-994D-FE3FA2D34369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35E441D3-5029-47C4-994D-FE3FA2D34369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35E441D3-5029-47C4-994D-FE3FA2D34369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,3 +1,6 @@
+using AutoMapper;
+using CreditDemo.Business;
+using CreditDemo.Common;
 using CreditDemo.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,8 +29,15 @@ namespace CreditDemo
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
-
+            services.AddScoped<ISalesBusiness, SalesBusiness>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAutoMapper();
+
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Tech Challenge Syed", Version = "v1" });
+            });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -44,6 +54,12 @@ namespace CreditDemo
                 var context = serviceScope.ServiceProvider.GetRequiredService<SaleContext>();
                 context.Database.EnsureCreated();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Demo Race API v1");
+            });
 
             if (env.IsDevelopment())
             {

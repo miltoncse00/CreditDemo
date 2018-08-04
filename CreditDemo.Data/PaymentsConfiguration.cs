@@ -15,9 +15,8 @@ namespace CreditDemo.Data
 
             builder.Property(s => s.Description).HasMaxLength(500);
             builder.Property(s => s.PaymentAmount);
-            builder.HasOne(s => s.Sale).WithMany(s => s.Payments).HasForeignKey(p => p.SaleId);    
-
-
+            builder.HasOne(s => s.Sale).WithMany(s => s.Payments).HasForeignKey(p => p.SaleId);
+            builder.HasIndex(s => s.SaleId);
         }
     }
 }
