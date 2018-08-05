@@ -21,6 +21,23 @@ namespace CreditDemo.Controllers
             this.salesBusiness = salesBusiness;
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+
+                var result = await salesBusiness.GetAll();
+
+                return Ok(result);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.UnabledToGetRecords);
+            }
+        }
         [HttpPost]
         [Produces("application/json", Type = typeof(SaleModel))]
         public async Task<IActionResult> Save([FromBody] SaleModel sale)

@@ -1,0 +1,45 @@
+<div class="panel">
+  <div class="page-header panel-primary panel-heading bg-primary">
+    <h2>Sales Summary</h2>
+  </div>
+  <div class="panel-body">
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr class="row">
+          <th class="col-md-1">Id</th>
+          <th class="col-md-1">Customer Id</th>
+          <th class="col-md-1">Location</th>
+          <th class="col-md-1">Operator</th>
+          <th class="col-md-1">Opening Debt</th>
+          <th class="col-md-1">Currency</th>
+          <th class="col-md-1">Invoice Number</th>
+          <th class="col-md-5"></th>
+        </tr>
+      </thead>
+      <tr *ngFor="let sale of Sales" class="row">
+        <td class="col-md-1">{{sale.id}}</td>
+        <td class="col-md-1">{{sale.customer_id}}</td>
+        <td class="col-md-1">{{sale.location_name}}</td>
+        <td class="col-md-1">{{sale.operator_name}}</td>
+        <td class="col-md-1">{{sale.opening_debt}}</td>
+        <td class="col-md-1">{{sale.currency}}</td>
+        <td class="col-md-1">{{sale.sale_invoice_number}}</td>
+        <td *ngIf='sale.payments.length>0' class="col-md-12">
+          <table>
+            <tr class="row">            
+              <th class="col-md-1">Payment Date</th>
+              <th class="col-md-1">Payment Amount</th>
+              <th class="col-md-3">Description</th>
+            </tr>
+            <tr *ngFor="let payment of sale.payments" class="row">
+              <td class="col-md-6">{{payment.payment_date|date:'yyyy-MM-dd'}}</td>
+              <td class="col-md-2">{{payment.payment_amount}}</td>
+              <td class="col-md-2">{{payment.description}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>

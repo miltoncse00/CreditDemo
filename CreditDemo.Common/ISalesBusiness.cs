@@ -9,5 +9,6 @@ namespace CreditDemo.Common
     public interface ISalesBusiness
     {
         Task<bool> SaveSales(SaleModel saleModel);
+        Task<List<SaleModel>> GetAll();
     }
 }

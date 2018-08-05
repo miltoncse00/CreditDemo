@@ -1,0 +1,154 @@
+<div class="panel">
+  <div class="page-header panel-primary panel-heading bg-primary">
+    <h2>Sales Entry Form</h2>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+    <ul>
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="successfulSave">
+    Sale entry is saved successfully!
+  </div>
+  <div class="panel-body">
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+      <!--id-->
+      <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.id.valid && myForm.controls.id.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="idCtr">Id</label><span>*</span>
+          <input type="text" class="form-control" id="idCtr" formControlName="id" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!myForm.controls.id.valid && myForm.controls.id.touched">
+        You must enter Id and and less than 12 character
+      </div>
+
+      <!--customer id-->
+      <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.customer_id.valid && myForm.controls.customer_id.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="customeridCtr">Customer Id</label><span>*</span>
+          <input type="text" class="form-control" id="customeridCtr" formControlName="customer_id" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!myForm.controls.customer_id.valid && myForm.controls.customer_id.touched">
+        Customer Id is required and less than 12 character
+      </div>
+
+      <!--Location Name-->
+      <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.location_name.valid && myForm.controls.location_name.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="locationnameCtr">Location </label>
+          <input type="text" class="form-control" id="locationnameCtr" formControlName="location_name" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!myForm.controls.location_name.valid && myForm.controls.location_name.touched">
+        Location should be less than 500 characters
+      </div>
+
+      <!--operator name-->
+      <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.operator_name.valid && myForm.controls.operator_name.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="operator_nameCtr">Operator </label><span>*</span>
+          <input type="text" class="form-control" id="operator_nameCtr" formControlName="operator_name" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!myForm.controls.operator_name.valid && myForm.controls.operator_name.touched">
+        Operator is required and should be less than 500 characters
+      </div>
+
+      <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.opening_debt.valid && myForm.controls.opening_debt.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="opening_debtCtr">Opening Debt</label>
+          <input type="number" class="form-control" id="opening_debtCtr" formControlName="opening_debt" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!myForm.controls.opening_debt.valid && myForm.controls.opening_debt.touched">
+        Amount must be numeric and smaller than 10000000000"
+      </div>
+
+
+      <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.currency.valid && myForm.controls.currency.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="currencyCtr">Currency</label>
+          <input type="text" class="form-control" id="currencyCtr" formControlName="currency" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!myForm.controls.currency.valid && myForm.controls.currency.touched">
+        Currency must be less than 50 characters
+      </div>
+
+
+      <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.sale_invoice_number.valid && myForm.controls.sale_invoice_number.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="sale_invoice_numberCtr">Sale Invoice Number </label><span>*</span>
+          <input type="text" class="form-control" id="sale_invoice_numberCtr" formControlName="sale_invoice_number" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!myForm.controls.sale_invoice_number.valid && myForm.controls.sale_invoice_number.touched">
+        Sale invoice is required and less than 12 character
+      </div>
+
+      <div formArrayName="payments">
+        <h6>Payments</h6>
+
+        <div class="row" *ngFor="let payment of myForm.controls.payments.controls; let i=index">
+
+          <div [formGroupName]="i">
+            <div class="col-md-2">
+              <label [attr.for]="'payment_date'+i">PaymentDate</label>
+              <input type="date" class="form-control" [attr.id]="'payment_date'+i" formControlName="payment_date">
+              <small [hidden]="myForm.controls.payments.controls[i].controls.payment_date.valid" class="alert-danger" role="alert">
+                Payment Date is required
+              </small>
+            </div>
+            <div class="col-md-2">
+              <label [attr.for]="'payment_amount'+i">Payment Amount</label>
+              <input type="number" class="form-control" [attr.id]="'payment_amount'+i" formControlName="payment_amount">
+              <small [hidden]="myForm.controls.payments.controls[i].controls.payment_amount.valid" class="alert-danger" role="alert">
+                Payment Amount is required
+              </small>
+            </div>
+            <div class="col-md-4">
+              <label [attr.for]="'description'+i">Description</label>
+              <textarea type="text" class="form-control" [attr.id]="'description'+i" formControlName="description"></textarea>
+            </div>
+
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn glyphicon glyphicon-remove pull-right btnDelete" (click)="myForm.get('payments').removeAt(i)"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 col-sm-offset-10">
+          <button type="button" class="btn btn-primary" (click)="myForm.get('payments').push(buildItem())"><span class="btn glyphicon glyphicon-plus"></span>Add Another Payment</button>
+        </div>
+      </div>
+      <div class="form-group col-md-2 ">
+        <input type="submit" class=" btn btn-primary btn-lg" value="Submit" [disabled]="myForm?.invalid">
+      </div>
+      <!--<div class="form-group" [ngClass]="{'has-error':!checkForm.controls.checkdate.valid && checkForm.controls.checkdate.touched}">
+        <div class="col-sm-6">
+          <label class="control-label" for="checkDateCtr">Check Date</label><span>*</span>
+
+          <input type="date"
+                 formControlName="checkdate" />
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!checkForm.controls.checkdate.valid && checkForm.controls.checkdate.touched">
+        You must enter Date
+      </div>-->
+    </form>
+  </div>
+
+</div>
