@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { SalesModel } from '../../shared/sales.model';
 import { DemoService } from '../../shared/demoService';
 import { Observable } from 'rxjs/Observable';
+import { HttpErrorResponse } from '@angular/common/http';
+import { T } from '@angular/core/src/render3';
 
 @Component({
   selector: 'add-sales',
@@ -27,7 +29,7 @@ export class AddSalesComponent implements OnInit {
       customer_id: new FormControl('', [Validators.required, Validators.maxLength(12)]),
       location_name: new FormControl('', Validators.maxLength(500)),
       operator_name: new FormControl('', [Validators.required, Validators.maxLength(500)]),
-      opening_debt: new FormControl('', [Validators.min(0), Validators.max(99999999.99)]),
+      opening_debt: new FormControl(0, [Validators.min(0), Validators.max(99999999.99)]),
       currency: new FormControl('', Validators.maxLength(50)),
       sale_invoice_number: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       payments: this.fb.array([this.buildItem()])
@@ -52,19 +54,23 @@ export class AddSalesComponent implements OnInit {
           this.successfulSave = true;
 
         },
-        (err) => {
-          this.successfulSave = false;
-          if (err.status = 400) {
-            let validationErrorDictionary = JSON.parse(err.text());
-            for (var fieldName in validationErrorDictionary) {
-              if (validationErrorDictionary.hasOwnProperty(fieldName)) {
-                this.errors.push(validationErrorDictionary[fieldName]);
+        (err: HttpErrorResponse) => {
+          
+          if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            this.errors.push(err.error.message);
+          } else {
+            if (err.status == 400) {
+              var json = JSON.stringify(err.error);
+              let validationErrorDictionary = JSON.parse(json);
+              for (var fieldName in err.error) {
+                if (validationErrorDictionary.hasOwnProperty(fieldName)) {
+                  this.errors.push(validationErrorDictionary[fieldName]);
+                }
               }
+            } else {
+              this.errors.push("something went wrong!");
             }
-
-          }
-          else {
-            this.errors.push("something went wrong!");
           }
         });
     }
@@ -75,7 +81,7 @@ export class AddSalesComponent implements OnInit {
     return new FormGroup({
       payment_date: new FormControl(this.currentDate(), Validators.required),
       description: new FormControl('', Validators.maxLength(500)),
-      payment_amount: new FormControl('', [Validators.min(.01), Validators.max(99999999.99)])
+      payment_amount: new FormControl(0, [Validators.min(0), Validators.max(99999999.99), Validators.required])
     })
   }
 }

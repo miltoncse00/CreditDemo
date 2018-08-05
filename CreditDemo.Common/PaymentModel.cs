@@ -12,6 +12,7 @@ namespace CreditDemo.Common
         [MaxLength(500)]
         public string Description { get; set; }
         [Required]
+        [Range(0, 99999999.99, ErrorMessage = "Amount must be numeric, greater than 0, and smaller than 100000000")]
         [JsonProperty("payment_amount")]
         public decimal PaymentAmount { get; set; }
     }

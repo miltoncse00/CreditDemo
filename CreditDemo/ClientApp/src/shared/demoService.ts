@@ -35,4 +35,6 @@ export class DemoService {
     return this._http.get<number>(this.myAppUrl + "api/Sales/SaleId");
 
   }
+
+
 }

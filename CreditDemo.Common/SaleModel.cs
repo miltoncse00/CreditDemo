@@ -8,12 +8,12 @@ namespace CreditDemo.Common
 {
     public class SaleModel
     {
-        [Required]
-        [MaxLength(12)]
+        [Required(ErrorMessage ="id is requred")]
+        [MaxLength(12, ErrorMessage ="Id should be less than 12 character")]
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
-        [Required]
-        [MaxLength(12)]
+        [Required(ErrorMessage ="customer id is required")]
+        [MaxLength(12, ErrorMessage = "Customer Id should be less than 12 character")]
         [JsonProperty(PropertyName = "customer_id")]
         public string CustomerId { get; set; }
 
@@ -26,6 +26,7 @@ namespace CreditDemo.Common
         [JsonProperty(PropertyName = "operator_name")]
         [Required]
         public string OperatorName { get; set; }
+        [Range(0, 99999999.99, ErrorMessage = "Amount must be numeric, greater than 0, and smaller than 100000000")]
         [JsonProperty(PropertyName = "opening_debt")]
         public decimal OpeningDebit { get; set; }
         [JsonProperty(PropertyName = "currency")]

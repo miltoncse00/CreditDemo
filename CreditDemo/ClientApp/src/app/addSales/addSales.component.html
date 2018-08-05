@@ -5,7 +5,7 @@
   <div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
     <ul>
       <li *ngFor="let error of errors">
-        {{ error }}
+        {{ errors }}
       </li>
     </ul>
   </div>
@@ -18,31 +18,31 @@
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.id.valid && myForm.controls.id.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="idCtr">Id</label><span>*</span>
-          <input type="text" class="form-control" id="idCtr" readonly formControlName="id" />
+          <input type="text" class="form-control" id="idCtr" maxlength="12" readonly formControlName="id" />
         </div>
       </div>
       <div class="alert alert-danger" role="alert"
            *ngIf="!myForm.controls.id.valid && myForm.controls.id.touched">
-        You must enter Id and and less than 12 character
+        You must enter Id
       </div>
 
       <!--customer id-->
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.customer_id.valid && myForm.controls.customer_id.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="customeridCtr">Customer Id</label><span>*</span>
-          <input type="text" class="form-control" id="customeridCtr" formControlName="customer_id" />
+          <input type="text" class="form-control" id="customeridCtr"  maxlength="12"  formControlName="customer_id" />
         </div>
       </div>
       <div class="alert alert-danger" role="alert"
            *ngIf="!myForm.controls.customer_id.valid && myForm.controls.customer_id.touched">
-        Customer Id is required and less than 12 character
+        Customer Id is required;
       </div>
 
       <!--Location Name-->
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.location_name.valid && myForm.controls.location_name.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="locationnameCtr">Location </label>
-          <input type="text" class="form-control" id="locationnameCtr" formControlName="location_name" />
+          <input type="text" class="form-control" id="locationnameCtr"  maxlength="500"   formControlName="location_name" />
         </div>
       </div>
       <div class="alert alert-danger" role="alert"
@@ -54,12 +54,12 @@
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.operator_name.valid && myForm.controls.operator_name.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="operator_nameCtr">Operator </label><span>*</span>
-          <input type="text" class="form-control" id="operator_nameCtr" formControlName="operator_name" />
+          <input type="text" class="form-control" id="operator_nameCtr" maxlength="500" formControlName="operator_name" />
         </div>
       </div>
       <div class="alert alert-danger" role="alert"
            *ngIf="!myForm.controls.operator_name.valid && myForm.controls.operator_name.touched">
-        Operator is required and should be less than 500 characters
+        Operator is required;
       </div>
 
       <!--opening debt-->
@@ -122,7 +122,7 @@
               <label [attr.for]="'payment_amount'+i">Payment Amount</label>
               <input type="number" class="form-control" [attr.id]="'payment_amount'+i" formControlName="payment_amount">
               <small [hidden]="myForm.controls.payments.controls[i].controls.payment_amount.valid" class="alert-danger" role="alert">
-                Payment Amount is required
+                Payment Amount is not valid
               </small>
             </div>
             <div class="col-md-4">
