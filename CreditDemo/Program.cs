@@ -19,6 +19,8 @@ namespace CreditDemo
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+              .UseIISIntegration()
+                .UseKestrel(o => { o.Limits.KeepAliveTimeout = System.TimeSpan.FromMinutes(20); })
                 .UseStartup<Startup>();
     }
 }
