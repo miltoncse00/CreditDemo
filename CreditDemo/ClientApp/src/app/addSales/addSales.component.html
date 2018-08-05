@@ -18,7 +18,7 @@
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.id.valid && myForm.controls.id.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="idCtr">Id</label><span>*</span>
-          <input type="text" class="form-control" id="idCtr" formControlName="id" />
+          <input type="text" class="form-control" id="idCtr" readonly formControlName="id" />
         </div>
       </div>
       <div class="alert alert-danger" role="alert"
@@ -62,6 +62,7 @@
         Operator is required and should be less than 500 characters
       </div>
 
+      <!--opening debt-->
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.opening_debt.valid && myForm.controls.opening_debt.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="opening_debtCtr">Opening Debt</label>
@@ -73,11 +74,18 @@
         Amount must be numeric and smaller than 10000000000"
       </div>
 
-
+      <!--Currency-->
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.currency.valid && myForm.controls.currency.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="currencyCtr">Currency</label>
-          <input type="text" class="form-control" id="currencyCtr" formControlName="currency" />
+          <select class="form-control" id="currencyCtr" formControlName="currency" >
+            <option>USD</option>
+            <option>AUD</option>
+            <option>CAD</option>
+            <option>MYR</option>
+            <option>BDT</option>
+          </select>
+        <!--  <input type="text" class="form-control" id="currencyCtr" formControlName="currency" />-->
         </div>
       </div>
       <div class="alert alert-danger" role="alert"
@@ -85,7 +93,7 @@
         Currency must be less than 50 characters
       </div>
 
-
+      <!--sale inoice number-->
       <div class="form-group row" [ngClass]="{'has-error':!myForm.controls.sale_invoice_number.valid && myForm.controls.sale_invoice_number.touched}">
         <div class="col-sm-6">
           <label class="control-label" for="sale_invoice_numberCtr">Sale Invoice Number </label><span>*</span>

@@ -30,4 +30,9 @@ export class DemoService {
   }
 
 
+  getSaleId(): Observable<number> {
+
+    return this._http.get<number>(this.myAppUrl + "api/Sales/SaleId");
+
+  }
 }

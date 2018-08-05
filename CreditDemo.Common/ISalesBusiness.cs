@@ -10,5 +10,6 @@ namespace CreditDemo.Common
     {
         Task<bool> SaveSales(SaleModel saleModel);
         Task<List<SaleModel>> GetAll();
+        long GetSaleId();
     }
 }

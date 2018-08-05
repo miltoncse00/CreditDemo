@@ -6,9 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AddSalesComponent } from './addSales/addSales.component';
 import { DemoService } from '../shared/demoService';
 import { ListSalesComponent } from './listSales/listSales.component';
@@ -17,9 +14,6 @@ import { ListSalesComponent } from './listSales/listSales.component';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     AddSalesComponent,
     ListSalesComponent
   ],
@@ -29,7 +23,7 @@ import { ListSalesComponent } from './listSales/listSales.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: AddSalesComponent, pathMatch: 'full' },
       { path: 'add-sales', component: AddSalesComponent },
       { path: 'list-sales', component: ListSalesComponent }
    ])

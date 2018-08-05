@@ -58,7 +58,7 @@ namespace CreditDemo
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Demo Race API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Credit Demo API v1");
             });
 
             if (env.IsDevelopment())

@@ -27,6 +27,11 @@ namespace CreditDemo.Business
             return resultModel;
         }
 
+        public  long GetSaleId()
+        {
+            return  saleContext.GetSaleNo();
+        }
+
         public async Task<bool> SaveSales(SaleModel saleModel)
         {
             saleModel.TimeStamp = DateTime.UtcNow;

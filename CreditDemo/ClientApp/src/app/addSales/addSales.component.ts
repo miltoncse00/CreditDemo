@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SalesModel } from '../../shared/sales.model';
 import { DemoService } from '../../shared/demoService';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'add-sales',
@@ -15,9 +16,14 @@ export class AddSalesComponent implements OnInit {
   errors: string[];
   ngOnInit(): void {
     this.errors = [];
-
+    var saleId: number;
+    this.demoService.getSaleId().subscribe(
+      (data) => {
+        saleId = data;
+        this.myForm.controls['id'].setValue(saleId);
+      });
     this.myForm = this.fb.group({
-      id: new FormControl('', [Validators.required, Validators.maxLength(12)]),
+      id: new FormControl(saleId, [Validators.required, Validators.maxLength(12)]),
       customer_id: new FormControl('', [Validators.required, Validators.maxLength(12)]),
       location_name: new FormControl('', Validators.maxLength(500)),
       operator_name: new FormControl('', [Validators.required, Validators.maxLength(500)]),
@@ -26,12 +32,17 @@ export class AddSalesComponent implements OnInit {
       sale_invoice_number: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       payments: this.fb.array([this.buildItem()])
     })
+
+    
   }
 
   currentDate() {
     const currentDate = new Date();
     return currentDate.toISOString().substring(0, 10);
   }
+
+
+ 
 
   submit = () => {
     if (this.myForm.valid) {

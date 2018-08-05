@@ -23,6 +23,7 @@ namespace CreditDemo.Controllers
 
 
         [HttpGet]
+        [Produces("application/json", Type = typeof(SaleModel))]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -33,11 +34,33 @@ namespace CreditDemo.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.UnabledToGetRecords);
             }
         }
+
+        [HttpGet]
+        [Route("SaleId")]
+        [Produces("application/json", Type = typeof(long))]
+
+        public IActionResult SaleId()
+        {
+            try
+            {
+
+                var result = salesBusiness.GetSaleId();
+
+                return Ok(result);
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.UnabledToGetRecords);
+            }
+        }
+
+
         [HttpPost]
         [Produces("application/json", Type = typeof(SaleModel))]
         public async Task<IActionResult> Save([FromBody] SaleModel sale)
@@ -56,7 +79,7 @@ namespace CreditDemo.Controllers
                     return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.UnabledToSaveRecords);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.UnabledToSaveRecords);
             }
