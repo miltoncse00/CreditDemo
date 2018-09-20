@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data.SqlClient;
 using System.Text;
 
 namespace CreditDemo.Data
 {
-    public class SaleContext : DbContext
+    public class SaleContext : IdentityDbContext
     {
         public SaleContext(DbContextOptions<SaleContext> options)
   : base(options) { }
@@ -13,6 +14,7 @@ namespace CreditDemo.Data
 
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<JobSeeker> JobSeekers { get; set; }
         public long GetSaleNo()
         {
 

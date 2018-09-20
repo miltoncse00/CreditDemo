@@ -26,7 +26,7 @@ namespace CreditDemo
         {
 
             var dbOptions = services.AddDbContext<SaleContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b=>b.MigrationsAssembly("CreditDemo")));
 
 
             services.AddScoped<ISalesBusiness, SalesBusiness>();
